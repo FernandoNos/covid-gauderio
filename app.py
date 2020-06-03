@@ -1,10 +1,14 @@
-import tweepy
 
+from twitterService import sendTweet
+from covidStatusService import getRSCovidStatuses
 
+statuses = getRSCovidStatuses()
 
-auth = tweepy.OAuthHandler(consumer_key, consumer_secret) 
-auth.set_access_token(access_token, access_token_secret)
-api = tweepy.API(auth)
-user = api.me()
+for status in statuses:
+    title = status['titulo']
+    flag = status['bandeira']
+    description = status['bandeira_descricao']
+    tweet = title + ' está na bandeira '+flag+'. Descrição: '+description
 
-api.update_status('lalal')
+    sendTweet(tweet)
+    break
