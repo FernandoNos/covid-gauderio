@@ -1,1 +1,1 @@
-worker: python3 app.py
+clock: python3 app.py

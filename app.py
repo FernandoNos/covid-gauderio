@@ -1,9 +1,13 @@
 from twitterService import sendTweet
 from covidStatusService import getRSCovidStatuses
-import schedule
 import time
 from datetime import datetime
 
+from apscheduler.schedulers.blocking import BlockingScheduler
+
+sched = BlockingScheduler()
+
+@sched.scheduled_job('interval',minutes=1)
 def sendCovidUpdates():
 
     print('Starting to send out updates!')
@@ -23,9 +27,5 @@ def sendCovidUpdates():
     # Current date time in local system
     print(datetime.now())
     print('All updates sent!')
-    
-schedule.every(1).minutes.do(sendCovidUpdates)
 
-while True:
-    schedule.run_pending()
-    time.sleep(1)
+sched.start()
