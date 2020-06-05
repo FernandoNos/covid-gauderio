@@ -21,7 +21,6 @@ def sendCovidUpdates():
         tweet = title + ' está na bandeira '+flag+'. \nDescrição: '+description
 
         sendTweet(tweet)
-        break
     
 
     # Current date time in local system
