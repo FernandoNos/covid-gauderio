@@ -23,6 +23,7 @@ def sendCovidUpdates():
     # Current date time in local system
     print(datetime.now())
     print('All updates sent!')
+    
 schedule.every(1).minutes.do(sendCovidUpdates)
 
 while True:
