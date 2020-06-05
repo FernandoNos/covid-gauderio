@@ -6,5 +6,5 @@ setuptools.setup(name='CoviTche',
       author='Fernando Nos',
       author_email='nosfernandos@gmail.com',
       packages=setuptools.find_packages(),
-      install_requires=["tweepy","requests"]
+      install_requires=["tweepy","requests","schedule"]
      )
