@@ -2,6 +2,7 @@ from twitterService import sendTweet
 from covidStatusService import getRSCovidStatuses
 import time
 from datetime import datetime
+import tweepy
 
 from apscheduler.schedulers.blocking import BlockingScheduler
 
@@ -28,11 +29,16 @@ def sendCovidUpdates():
         tweet = currentDate+'\n '+tweet
         
         time.sleep(60)
-        sendTweet(tweet)
+        try:
+            sendTweet(tweet)
+        except tweepy.error.TweepError:
+            print('Erro sending out tweet... duplicate')
+
     
 
     # Current date time in local system
     print(datetime.now())
     print('All updates sent!')
 
-sched.start()
+sched.start
+# sendCovidUpdates()
