@@ -33,6 +33,8 @@ def sendCovidUpdates():
             sendTweet(tweet)
         except tweepy.error.TweepError:
             print('Erro sending out tweet... duplicate')
+        except Exception as e:
+            print('Failed to upload to ftp: '+ str(e))
 
     # Current date time in local system
     print(datetime.now())
