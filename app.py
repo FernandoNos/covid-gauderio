@@ -7,7 +7,7 @@ from apscheduler.schedulers.blocking import BlockingScheduler
 
 sched = BlockingScheduler()
 
-@sched.scheduled_job('interval',minutes=1)
+@sched.scheduled_job('cron',id='covid_update',day_of_week='sun')
 def sendCovidUpdates():
 
     print('Starting to send out updates!')
@@ -16,10 +16,18 @@ def sendCovidUpdates():
     for status in statuses:
         title = status['titulo']
         flag = status['bandeira']
-        description = status['bandeira_descricao']
         print('  Sending update for '+title)
-        tweet = title + ' está na bandeira '+flag+'. \nDescrição: '+description
+        tweet = title + ' está na bandeira '+flag
+        print(tweet)
+        tweet = tweet[0:263]+' #covid #rs #covidrs'
 
+        now = datetime.now() # current date and time
+
+        currentDate=now.strftime("%d/%m/%Y")
+
+        tweet = currentDate+'\n '+tweet
+        
+        time.sleep(60)
         sendTweet(tweet)
     
 
