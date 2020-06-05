@@ -31,8 +31,8 @@ def sendCovidUpdates():
         time.sleep(60)
         try:
             sendTweet(tweet)
-        except tweepy.error.TweepError:
-            print('Erro sending out tweet... duplicate')
+        except tweepy.error.TweepError as e :
+            print('Erro sending out tweet... duplicate '+str(e))
         except Exception as e:
             print('Failed to upload to ftp: '+ str(e))
 
