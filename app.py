@@ -34,8 +34,6 @@ def sendCovidUpdates():
         except tweepy.error.TweepError:
             print('Erro sending out tweet... duplicate')
 
-    
-
     # Current date time in local system
     print(datetime.now())
     print('All updates sent!')
